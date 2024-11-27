@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Arma : MonoBehaviour
 {
-    public Camera playerCamera;
+    
 
     public bool estaDisparando, ListoParaDisparar;
     bool  allowReset  = true;
@@ -88,7 +88,7 @@ public class Arma : MonoBehaviour
     }
 
     public Vector3 CalcularDireccionYRafaga(){
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f,  0.5f, 0));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f,  0.5f, 0));
         RaycastHit hit;
 
         Vector3 targetPoint;
