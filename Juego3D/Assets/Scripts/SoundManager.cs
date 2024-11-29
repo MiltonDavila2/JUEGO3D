@@ -11,6 +11,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource SonidoCargadorVacio;
 
     public AudioSource SonidoAK47;
+
+    public AudioSource TP;
+
     
 
     private void Awake(){
@@ -46,5 +49,10 @@ public class SoundManager : MonoBehaviour
                 break;
             
         }
+    }
+
+    public void SonidoTP(){
+        TP.Play();
+
     }
 }
