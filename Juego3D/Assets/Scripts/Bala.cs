@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
+    public int danioBala;
 
     private void OnCollisionEnter(Collision collision){
 
@@ -16,6 +17,11 @@ public class Bala : MonoBehaviour
         if(collision.gameObject.CompareTag("Wall")){
             print("Hit wall");
             CrearEfectoDeImpacto(collision);
+            Destroy(gameObject);
+        }
+
+        if(collision.gameObject.CompareTag("Enemigo")){
+            collision.gameObject.GetComponent<Zombie>().TakeDamage(danioBala);
             Destroy(gameObject);
         }
     }

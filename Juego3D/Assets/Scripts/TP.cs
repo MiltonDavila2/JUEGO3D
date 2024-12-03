@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class TP : MonoBehaviour
 {
-    public Transform destino; 
-    public float retrasoTP = 0.01f; 
-    public bool estaTeletransportando = false;
+    public Transform destination; // Destino del teletransporte
+    public float teleportationHeightOffset = 1f; // Offset vertical para el teletransporte
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (other.CompareTag("Player") && !estaTeletransportando)
+        // Asegurarnos de que el objeto tiene un Transform válido
+        if (other != null && other.transform != null && destination != null)
         {
-           
-            GameObject jugadorCompleto = other.transform.root.gameObject;
+            // Obtener el objeto raíz del jugador (el padre de Body)
+            Transform playerTransform = other.transform.root;
 
-            StartCoroutine(TeletransportarJugador(jugadorCompleto));
+            // Mover el objeto raíz al destino con el offset
+            Vector3 newPosition = destination.position + new Vector3(0, teleportationHeightOffset, 0);
+            playerTransform.position = newPosition;
+
+            // Imprimir mensaje en consola
+            Debug.Log($"{playerTransform.gameObject.name} ha sido teletransportado a {newPosition}");
+
+            // Si el jugador tiene un Rigidbody, ponerlo en modo cinemático durante el teletransporte
+            Rigidbody rb = playerTransform.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;     // Desactivar físicas momentáneamente
+            }
         }
-    }
-
-    private IEnumerator TeletransportarJugador(GameObject jugador)
-    {
-        estaTeletransportando = true;
-
-        
-        yield return new WaitForSeconds(retrasoTP);
-
-        
-        SoundManager.Instance.SonidoTP();
-        jugador.transform.position = destino.position;
-
-        
-        estaTeletransportando = false;
+        else
+        {
+            Debug.LogWarning("El destino o el objeto que entra en el trigger no es válido.");
+        }
     }
 }

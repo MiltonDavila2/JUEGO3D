@@ -11,7 +11,8 @@ public enum TiposDeArmas{
 
 public class Arma : MonoBehaviour
 {
-    
+    public bool isActiveWeapon;
+    public int DanioArma;
 
     public bool estaDisparando, ListoParaDisparar;
     bool  allowReset  = true;
@@ -28,11 +29,14 @@ public class Arma : MonoBehaviour
     public float tiempodevidaBala = 3f;
 
     public GameObject muzzleEffect;
-    private Animator animator;
+    internal Animator animator;
 
     public float tiempoRecarga;
     public int TamanioCargador, balasRestantes;
     public bool estaRecargando;
+
+    public Vector3 SpawnPosition;
+    public Vector3 SpawnRotation;
 
     
 
@@ -61,34 +65,37 @@ public class Arma : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(balasRestantes == 0 && estaDisparando){
-            SoundManager.Instance.SonidoCargadorVacio.Play();
-        }
+    {   if(isActiveWeapon){
+            if(balasRestantes == 0 && estaDisparando){
+                SoundManager.Instance.SonidoCargadorVacio.Play();
+            }
 
 
 
-        if(DisparoActual ==  ModosDisparo.Auto){
-            estaDisparando = Input.GetKey(KeyCode.Mouse0);
-        }else if(DisparoActual == ModosDisparo.Single || DisparoActual == ModosDisparo.Burst){
-            estaDisparando = Input.GetKeyDown(KeyCode.Mouse0);
-        }
+            if(DisparoActual ==  ModosDisparo.Auto){
+                estaDisparando = Input.GetKey(KeyCode.Mouse0);
+            }else if(DisparoActual == ModosDisparo.Single || DisparoActual == ModosDisparo.Burst){
+                estaDisparando = Input.GetKeyDown(KeyCode.Mouse0);
+            }
 
-        if(Input.GetKeyDown(KeyCode.R)  && balasRestantes <  TamanioCargador && estaRecargando == false){
-            Recargar();
-        }
+            if(Input.GetKeyDown(KeyCode.R)  && balasRestantes <  TamanioCargador && estaRecargando == false){
+                Recargar();
+            }
 
-        if(ListoParaDisparar && estaDisparando == false && estaRecargando == false && balasRestantes <= 0){
-            //Recargar();
-        }
+            if(ListoParaDisparar && estaDisparando == false && estaRecargando == false && balasRestantes <= 0){
+                //Recargar();
+            }
 
-        if(ListoParaDisparar && estaDisparando && balasRestantes > 0){
-            BalasQueNosQuedan = BalasPorRafaga;//aqui
-            DispararArma();
-        }
+            if(ListoParaDisparar && estaDisparando && balasRestantes > 0){
+                BalasQueNosQuedan = BalasPorRafaga;//aqui
+                DispararArma();
 
-        if(AmmoManager2.Instance.DisplayMunicion != null){
-            AmmoManager2.Instance.DisplayMunicion.text = $"{balasRestantes/BalasPorRafaga}/{TamanioCargador/BalasPorRafaga}";
+            }
+
+            if(AmmoManager2.Instance.DisplayMunicion != null){
+                AmmoManager2.Instance.DisplayMunicion.text = $"{balasRestantes/BalasPorRafaga}/{TamanioCargador/BalasPorRafaga}";
+         
+            }
         }
     }
 
@@ -105,6 +112,11 @@ public class Arma : MonoBehaviour
         Vector3 DireccionDisparo = CalcularDireccionYRafaga().normalized;
 
         GameObject bala = Instantiate(bulletPrefab, bulletSpawn.position , Quaternion.identity);
+
+        Bala bal = bala.GetComponent<Bala>();
+
+        bal.danioBala = DanioArma;
+
 
         bala.transform.forward = DireccionDisparo;
 
