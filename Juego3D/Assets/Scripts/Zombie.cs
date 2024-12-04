@@ -8,11 +8,13 @@ public class Zombie : MonoBehaviour
     [SerializeField] private int HP = 100;
 
     private Animator animator;
+    private UnityEngine.AI.NavMeshAgent navAgent;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        
+        navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
 
@@ -22,9 +24,11 @@ public class Zombie : MonoBehaviour
 
         if(HP<= 0){
             animator.SetTrigger("DIE");
-            Destroy(gameObject);
+
         }else{
             animator.SetTrigger("DAMAGE");
         }
     }
+
+
 }

@@ -15,8 +15,8 @@ GameObject:
   m_Name: Mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1958984342440436250
 Transform:
@@ -98,8 +98,8 @@ GameObject:
   m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6160821240191421500
 Transform:
@@ -181,8 +181,8 @@ GameObject:
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &333887301719208163
 Transform:
@@ -263,12 +263,13 @@ GameObject:
   - component: {fileID: 696757738265363520}
   - component: {fileID: 6898977088156223179}
   - component: {fileID: 7593447538024414628}
-  m_Layer: 0
+  - component: {fileID: 7718977733090651336}
+  m_Layer: 6
   m_Name: AK74
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5096192258846154058
 Transform:
@@ -412,8 +413,26 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.033782434, y: 0.16676854, z: 0.77072597}
-  m_Center: {x: -0.0017576611, y: -0.03621251, z: -0.06259714}
+  m_Size: {x: 0.033782434, y: 0.3330232, z: 0.8251671}
+  m_Center: {x: -0.0017576609, y: -0.056100756, z: -0.035376564}
+--- !u!114 &7718977733090651336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222369291419624139}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6557805604263668651
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,8 +448,8 @@ GameObject:
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7877326379814648222
 Transform:
@@ -5210,8 +5229,8 @@ GameObject:
   m_Name: SpawnBalas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8366205029381140711
 Transform:
