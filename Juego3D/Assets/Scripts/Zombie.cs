@@ -10,6 +10,8 @@ public class Zombie : MonoBehaviour
     private Animator animator;
     private UnityEngine.AI.NavMeshAgent navAgent;
 
+    public bool isDead;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,8 @@ public class Zombie : MonoBehaviour
 
         if(HP<= 0){
             animator.SetTrigger("DIE");
+
+            isDead = true;
 
         }else{
             animator.SetTrigger("DAMAGE");

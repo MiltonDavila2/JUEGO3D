@@ -21,7 +21,13 @@ public class Bala : MonoBehaviour
         }
 
         if(collision.gameObject.CompareTag("Enemigo")){
-            collision.gameObject.GetComponent<Zombie>().TakeDamage(danioBala);
+
+            if(collision.gameObject.GetComponent<Zombie>().isDead == false){
+                collision.gameObject.GetComponent<Zombie>().TakeDamage(danioBala);
+            }
+
+            
+
             Destroy(gameObject);
         }
     }
